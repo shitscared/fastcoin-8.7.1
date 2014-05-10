@@ -31,6 +31,10 @@ static const unsigned int MAX_BLOCK_SIZE = 1000000;                      // 1000
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;         // 250KB  block soft limit
 /** The maximum size for transactions we're willing to relay/mine */
 static const unsigned int MAX_STANDARD_TX_SIZE = MAX_BLOCK_SIZE_GEN/2.5; // 100KB tx size limit
+/** Default for -blockmaxsize, maximum size for mined blocks **/
+static const unsigned int DEFAULT_BLOCK_MAX_SIZE = MAX_BLOCK_SIZE_GEN/4;
+/** Default for -blockprioritysize, maximum space for zero/low-fee transactions **/
+static const unsigned int DEFAULT_BLOCK_PRIORITY_SIZE = 27000;
 /** The maximum allowed number of signature check operations in a block (network rule) */
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 /** The maximum number of orphan transactions kept in memory */
