@@ -2,6 +2,7 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+
 #include <QApplication>
 
 #include "bitcoingui.h"
@@ -91,7 +92,8 @@ static void InitMessage(const std::string &message)
 {
     if(splashref)
     {
-        splashref->showMessage(QString::fromStdString(message), Qt::AlignBottom|Qt::AlignHCenter, QColor(55,55,55));
+        //splashref->showMessage(QString::fromStdString(message),Qt::AlignBottom|Qt::AlignHCenter, QColor(55,55,55));
+        splashref->showStatusMessage(QString::fromStdString(message), QColor(100,100,100));
         qApp->processEvents();
     }
     printf("init message: %s\n", message.c_str());
@@ -110,7 +112,7 @@ static std::string Translate(const char* psz)
 static void handleRunawayException(std::exception *e)
 {
     PrintExceptionContinue(e, "Runaway exception");
-    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occurred. Litecoin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
+    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occurred. Fastcoin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
     exit(1);
 }
 
@@ -146,7 +148,7 @@ int main(int argc, char *argv[])
     {
         // This message can not be translated, as translation is not initialized yet
         // (which not yet possible because lang=XX can be overridden in bitcoin.conf in the data directory)
-        QMessageBox::critical(0, "Litecoin",
+        QMessageBox::critical(0, "Fastcoin",
                               QString("Error: Specified data directory \"%1\" does not exist.").arg(QString::fromStdString(mapArgs["-datadir"])));
         return 1;
     }
@@ -154,12 +156,12 @@ int main(int argc, char *argv[])
 
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
-    QApplication::setOrganizationName("Litecoin");
-    QApplication::setOrganizationDomain("litecoin.org");
+    QApplication::setOrganizationName("Fastcoin");
+    QApplication::setOrganizationDomain("fstcoin.bit");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
-        QApplication::setApplicationName("Litecoin-Qt-testnet");
+        QApplication::setApplicationName("Fastcoin-Qt-testnet");
     else
-        QApplication::setApplicationName("Litecoin-Qt");
+        QApplication::setApplicationName("Fastcoin-Qt");
 
     // ... then GUI settings:
     OptionsModel optionsModel;
@@ -214,10 +216,12 @@ int main(int argc, char *argv[])
 #endif
 
     SplashScreen splash(QPixmap(), 0);
+
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min"))
     {
+        //splash.setWindowFlags(Qt::WindowStaysOnTopHint|Qt::SplashScreen);
         splash.show();
-        splash.setAutoFillBackground(true);
+       // splash.setAutoFillBackground(true);
         splashref = &splash;
     }
 
