@@ -13,7 +13,7 @@ packages:
 - "faketime"
 reference_datetime: "2011-01-30 00:00:00"
 remotes:
-- "url": "https://github.com/fastcoin-project/fastcoin.git"
+- "url": "https://github.com/shitscared/fastcoin-8.7.1.git"
   "dir": "fastcoin"
 files:
 - "qt-win32-4.8.5-gitian-r5.zip"
@@ -43,8 +43,8 @@ script: |
   ln -s $STAGING $HOME/qt
   $HOME/staging/host/bin/qmake -spec unsupported/win32-g++-cross MINIUPNPC_LIB_PATH=$STAGING MINIUPNPC_INCLUDE_PATH=$STAGING BDB_LIB_PATH=$STAGING BDB_INCLUDE_PATH=$STAGING BOOST_LIB_PATH=$STAGING BOOST_INCLUDE_PATH=$STAGING BOOST_LIB_SUFFIX=-mt-s BOOST_THREAD_LIB_SUFFIX=_win32-mt-s OPENSSL_LIB_PATH=$STAGING OPENSSL_INCLUDE_PATH=$STAGING QRENCODE_LIB_PATH=$STAGING QRENCODE_INCLUDE_PATH=$STAGING USE_QRCODE=1 INCLUDEPATH=$STAGING DEFINES=BOOST_THREAD_USE_LIB BITCOIN_NEED_QT_PLUGINS=1 QMAKE_LRELEASE=lrelease QMAKE_CXXFLAGS=-frandom-seed=fastcoin USE_BUILD_INFO=1 USE_SSE2=1
   make $MAKEOPTS
-  $HOST-strip release/fastcoin-qt.exe
-  cp release/fastcoin-qt.exe $OUTDIR/
+  $HOST-strip release/Fastcoin-qt.exe
+  cp release/Fastcoin-qt.exe $OUTDIR/
   #
   cd src
   export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
